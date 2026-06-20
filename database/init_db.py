@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS users(
 """)
 
 cursor.execute("""
+
 CREATE TABLE IF NOT EXISTS profiles(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
@@ -22,7 +23,8 @@ CREATE TABLE IF NOT EXISTS profiles(
     year TEXT,
     cgpa REAL,
     skills TEXT,
-    interests TEXT
+    interests TEXT,
+    profile_score INTEGER
 )
 """)
 

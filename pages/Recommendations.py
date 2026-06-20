@@ -45,7 +45,7 @@ profile_result = build_profile(profile)
 internships = discover_opportunities()
 
 recommendations = []
-
+st.write(df.columns)
 for _, internship in internships.iterrows():
 
     if check_eligibility(profile, internship):
@@ -92,3 +92,7 @@ st.subheader("💡 Career Advice")
 st.success(
     career_advice(profile)
 )
+if profile["cgpa"] >= 8.5:
+    st.success(
+        "Eligible for DRDO/ISRO Research Internships"
+    )

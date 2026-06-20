@@ -7,47 +7,49 @@ st.set_page_config(
     layout="wide"
 )
 
+if not st.session_state.get("logged_in"):
+    st.warning("Please Login First")
+    st.stop()
+
+st.title("📊 Internship Dashboard")
+
+st.success(
+    f"Welcome {st.session_state.username}"
+)
+
+
+from utils.profile_db import get_profile
+from utils.profile_score import build_profile
+from utils.profile_db import get_profile
+
+profile = get_profile(
+    st.session_state.user_id
+)
+
+st.write(profile)
+profile_score = build_profile(profile)
+
+st.metric(
+    "Profile Score",
+    profile_score
+)
+
+if profile:
+
+    st.write(
+        f"CGPA: {profile[6]}"
+    )
+
+    st.write(
+        f"Skills: {profile[7]}"
+    )
+
+    st.write(
+        f"Interests: {profile[8]}"
+    )
 # ==================================
 # LOGIN SYSTEM
 # ==================================
-
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-
-if not st.session_state.logged_in:
-
-    st.title("🔐 Admin Login")
-
-    username = st.text_input(
-        "Username",
-        key="admin_username"
-    )
-
-    password = st.text_input(
-        "Password",
-        type="password",
-        key="admin_password"
-    )
-
-    if st.button(
-        "Login",
-        key="login_button"
-    ):
-
-        if (
-            username == "admin"
-            and password == "admin123"
-        ):
-
-            st.session_state.logged_in = True
-            st.success("Login Successful")
-            st.rerun()
-
-        else:
-            st.error("Invalid Credentials")
-
-    st.stop()
-
 
 # ==================================
 # PAGE CONFIG
@@ -80,6 +82,10 @@ with col2:
 # ==================================
 
 df = pd.read_csv("data/internships.csv")
+df.columns = df.columns.str.strip()
+
+
+df.columns = df.columns.str.strip()
 
 if "Status" not in df.columns:
     df["Status"] = "Open"
@@ -166,6 +172,7 @@ if submit:
     else:
 
         status = "Open"
+    
 
     new_row = pd.DataFrame({
         "Lab": [lab],

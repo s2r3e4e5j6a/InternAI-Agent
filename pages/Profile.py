@@ -1,5 +1,6 @@
 import streamlit as st
 from utils.auth import save_profile
+from utils.profile_score import build_profile
 
 st.title("👤 Student Profile")
 
@@ -66,7 +67,21 @@ interests = st.multiselect(
         "Data Science"
     ]
 )
+profile = {
+    "skills": str(skills),
+    "cgpa": float(cgpa)
+}
 
+score = build_profile(profile)
+
+st.subheader("📊 Profile Strength")
+
+st.progress(score / 100)
+
+st.metric(
+    "Profile Score",
+    f"{score}/100"
+)
 if st.button("Save Profile"):
 
     save_profile(
@@ -82,7 +97,7 @@ if st.button("Save Profile"):
 
     st.session_state["interests"] = ",".join(interests)
 
+
     st.success(
         "✅ Profile Saved Successfully"
     )
-    

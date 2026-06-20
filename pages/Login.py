@@ -19,15 +19,12 @@ if st.button("Login"):
 
     if user:
 
-        st.session_state.logged_in = True
-        st.session_state.user_id = user[0]
-        st.session_state.username = user[1]
+        st.session_state["logged_in"] = True
+        st.session_state["user_id"] = user[0]
+        st.session_state["username"] = user[1]
 
-        st.success(
-            f"Welcome {user[1]}"
-        )
+        st.success("Login Successful")
+        st.rerun()
 
     else:
-        st.error(
-            "Invalid Username or Password"
-        )
+        st.error("Invalid Credentials")

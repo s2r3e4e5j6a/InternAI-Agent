@@ -1,36 +1,41 @@
 import streamlit as st
 
-st.title("🎓 AI Career Coach")
+st.title("🎓 Career Coach")
 
-skills = st.session_state.get("skills", "")
+skills = st.session_state.get(
+    "skills",
+    ""
+).lower()
 
-st.subheader("Current Skills")
-st.write(skills)
+cgpa = st.session_state.get(
+    "cgpa",
+    0
+)
 
-missing_skills = []
+drdo_score = 0
 
-if "Python" not in skills:
-    missing_skills.append("Python")
+if "python" in skills:
+    drdo_score += 25
 
-if "SQL" not in skills:
-    missing_skills.append("SQL")
+if "machine learning" in skills:
+    drdo_score += 25
 
-if "Machine Learning" not in skills:
-    missing_skills.append("Machine Learning")
+if cgpa >= 8.5:
+    drdo_score += 50
 
-if "Data Structures" not in skills:
-    missing_skills.append("Data Structures")
+st.metric(
+    "DRDO Readiness",
+    f"{drdo_score}%"
+)
 
-st.subheader("Recommended Skills")
+if drdo_score < 100:
 
-if missing_skills:
-    for skill in missing_skills:
-        st.write("❌", skill)
+    st.warning(
+        "Learn Research Methodology and Publications"
+    )
+
 else:
-    st.success("You already have strong skills!")
 
-st.subheader("Recommended Certifications")
-
-st.write("🎖 Google Data Analytics")
-st.write("🎖 AWS Cloud Practitioner")
-st.write("🎖 Microsoft AI Fundamentals")
+    st.success(
+        "Excellent DRDO Profile"
+    )

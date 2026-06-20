@@ -6,10 +6,21 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🚀 InternAI Agent")
-
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
+
+# Debug (temporary)
+st.write(st.session_state)
+
+# Logout Button
+if st.session_state.get("logged_in"):
+
+    if st.sidebar.button("🚪 Logout"):
+
+        st.session_state.clear()
+        st.rerun()
+
+st.title("🚀 InternAI Agent")
 
 if st.session_state.logged_in:
 
@@ -30,4 +41,7 @@ st.markdown("""
 - Profile
 - Login
 - Register
+- Resume Upload
+- Recommendations
+- Career Coach
 """)

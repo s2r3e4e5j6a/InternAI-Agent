@@ -2,9 +2,11 @@ import streamlit as st
 import pandas as pd
 
 from utils.matcher import rank_internship
+from utils.eligibility_agent import check_eligibility
 
 st.title("🎯 AI Internship Recommendations")
 
+# User Profile
 profile = {
     "skills": st.session_state.get(
         "skills",
@@ -15,12 +17,12 @@ profile = {
         0
     ),
     "interests": st.session_state.get(
-    "interests",
-    ""
-
-)
+        "interests",
+        ""
+    )
 }
 
+# Load internships
 df = pd.read_csv(
     "data/internships.csv"
 )
@@ -29,10 +31,19 @@ scores = []
 
 for _, row in df.iterrows():
 
-    score = rank_internship(
+    if check_eligibility(
         profile,
         row
-    )
+    ):
+
+        score = rank_internship(
+            profile,
+            row
+        )
+
+    else:
+
+        score = 0
 
     scores.append(score)
 
@@ -43,14 +54,25 @@ df = df.sort_values(
     ascending=False
 )
 
-st.dataframe(
-    df[
-        [
-            "Lab",
-            "Location",
-            "Eligibility",
-            "Match Score"
-        ]
-    ],
-    use_container_width=True
-)
+st.subheader("🏆 Top Recommended Internships")
+
+for _, row in df.iterrows():
+
+    st.markdown(
+        f"### {row['Lab']}"
+    )
+
+    st.write(
+        f"📍 {row['Location']}"
+    )
+
+    st.metric(
+        "Match Score",
+        f"{row['Match Score']}"
+    )
+
+    st.write(
+        f"Eligibility: {row['Eligibility']}"
+    )
+
+    st.divider()
