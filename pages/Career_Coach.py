@@ -34,8 +34,32 @@ if score >= 80:
         "Excellent profile for AI and Research internships"
     )
 
-else:
+elif score >= 60:
 
     st.warning(
-        "Improve skills and projects"
+        "Good profile. Build more projects and apply actively."
     )
+
+else:
+
+    st.error(
+        "Needs improvement before applying to competitive internships."
+    )
+
+st.subheader("📌 Recommended Next Steps")
+
+if "python" not in skills:
+    st.write("✓ Learn Python")
+
+if "machine learning" not in skills:
+    st.write("✓ Learn Machine Learning")
+
+if "deep learning" not in skills:
+    st.write("✓ Learn Deep Learning")
+
+if cgpa < 8.5:
+    st.write("✓ Improve CGPA above 8.5")
+
+st.write("✓ Build 2–3 AI/ML Projects")
+st.write("✓ Practice Aptitude and DSA")
+st.write("✓ Apply for DRDO, ISRO, CDAC, NIC internships")

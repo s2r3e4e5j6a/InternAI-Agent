@@ -6,91 +6,113 @@ def rank_internship(
     score = 0
     reasons = []
 
-    skills = str(
-        profile["skills"]
-    ).lower()
-
-    interests = str(
-        profile["interests"]
-    ).lower()
-
-    required_skills = str(
-        internship["skills_required"]
-    ).lower()
-
-    source = str(
-        internship["Source"]
-    ).lower()
-
     # ===================
-    # CGPA
+    # Skills (40)
     # ===================
 
-    if profile["cgpa"] >= internship["cgpa_required"]:
+    user_skills = [
+        s.strip().lower()
+        for s in str(
+            profile["skills"]
+        ).split(",")
+    ]
+
+    internship_skills = [
+        s.strip().lower()
+        for s in str(
+            internship["skills_required"]
+        ).split(",")
+    ]
+
+    matched_skills = len(
+        set(user_skills)
+        &
+        set(internship_skills)
+    )
+
+    if len(internship_skills) > 0:
+
+        score += min(
+            (
+                matched_skills
+                /
+                len(internship_skills)
+            ) * 40,
+            40
+        )
+
+    if matched_skills > 0:
+
+        reasons.append(
+            f"{matched_skills} Skill Match"
+        )
+
+    # ===================
+    # CGPA (25)
+    # ===================
+
+    if float(profile["cgpa"]) >= float(
+        internship["cgpa_required"]
+    ):
 
         score += 25
+
         reasons.append(
             "CGPA Match"
         )
 
     # ===================
-    # Skills
+    # Interests (20)
     # ===================
 
-    matched = 0
+    user_interests = [
+        s.strip().lower()
+        for s in str(
+            profile["interests"]
+        ).split(",")
+    ]
 
-    for skill in required_skills.split(","):
-
-        skill = skill.strip()
-
-        if skill and skill in skills:
-
-            matched += 1
-
-    score += min(
-        matched * 20,
-        40
+    internship_interests = []
+    matched_interests = len(
+        set(user_interests)
+        &
+        set(internship_interests)
     )
 
-    if matched > 0:
+    if len(internship_interests) > 0:
+
+        score += min(
+            (
+                matched_interests
+                /
+                len(internship_interests)
+            ) * 20,
+            20
+        )
+
+    if matched_interests > 0:
 
         reasons.append(
-            f"{matched} Skill Match"
+            "Interest Match"
         )
 
     # ===================
-    # Interests
+    # Location (15)
     # ===================
 
-    if (
-        "ai/ml" in interests
-        and
-        "machine learning"
-        in required_skills
-    ):
-
-        score += 20
-
-        reasons.append(
-            "AI Interest Match"
+    preferred_location = str(
+        internship.get(
+            "Location",
+            ""
         )
+    ).lower()
 
-    # ===================
-    # Govt Organizations
-    # ===================
-
-    if source in [
-        "drdo",
-        "isro",
-        "barc",
-        "hal",
-        "bel"
-    ]:
+    if preferred_location == "hyderabad":
 
         score += 15
 
         reasons.append(
-            "Government Opportunity"
+            "Preferred Location"
         )
 
-    return score, reasons
+    return round(score, 2), reasons

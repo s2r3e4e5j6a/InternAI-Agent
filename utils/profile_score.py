@@ -1,18 +1,16 @@
 def build_profile(profile):
 
-    if not profile:
-        return 0
-
     score = 0
 
-    # Profile from SQLite (tuple)
+    if profile is None:
+        return 0
+
     if isinstance(profile, tuple):
 
-        skills = str(profile[7] or "").lower()
-        cgpa = float(profile[6] or 0)
+        skills = str(profile[7]).lower()
+        cgpa = float(profile[6])
 
-    # Profile from Profile Page (dictionary)
-    elif isinstance(profile, dict):
+    else:
 
         skills = str(
             profile.get("skills", "")
@@ -21,9 +19,6 @@ def build_profile(profile):
         cgpa = float(
             profile.get("cgpa", 0)
         )
-
-    else:
-        return 0
 
     if "python" in skills:
         score += 20
@@ -37,4 +32,4 @@ def build_profile(profile):
     if cgpa >= 8.5:
         score += 40
 
-    return min(score, 100)
+    return score

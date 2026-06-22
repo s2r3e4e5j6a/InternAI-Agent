@@ -2,11 +2,13 @@ def career_advice(profile):
 
     advice = []
 
-    cgpa = profile["cgpa"]
-
     skills = str(
         profile["skills"]
     ).lower()
+
+    cgpa = float(
+        profile["cgpa"]
+    )
 
     interests = str(
         profile["interests"]
@@ -15,37 +17,37 @@ def career_advice(profile):
     if cgpa >= 8.5:
 
         advice.append(
-            "🎯 Strong candidate for DRDO, ISRO and BARC internships."
+            "Eligible for DRDO / ISRO Research Internships"
         )
 
     if "python" not in skills:
 
         advice.append(
-            "📚 Learn Python for more internship opportunities."
+            "Learn Python for Internship Opportunities"
         )
 
     if "machine learning" in skills:
 
         advice.append(
-            "🤖 Apply for AI/ML Research Internships."
+            "Apply for AI/ML Internships"
         )
 
-    if "data science" in skills:
+    if "data science" in interests:
 
         advice.append(
-            "📊 Apply for Data Science internships."
+            "Build Data Science Projects"
         )
 
-    if "government" in interests:
+    if "ai/ml" in interests:
 
         advice.append(
-            "🏛 Focus on DRDO, ISRO, BARC, BEL and HAL opportunities."
+            "Prepare for AI Engineer Roles"
         )
 
-    if not advice:
+    if len(advice) == 0:
 
         advice.append(
-            "🚀 Continue building skills and projects."
+            "Continue Building Skills and Projects"
         )
 
     return advice

@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
 import subprocess
+
+from utils.profile_db import get_profile
+from utils.profile_score import build_profile
+
 st.set_page_config(
     page_title="AI Government Opportunity Tracker",
     page_icon="🚀",
@@ -18,9 +22,6 @@ st.success(
 )
 
 
-from utils.profile_db import get_profile
-from utils.profile_score import build_profile
-from utils.profile_db import get_profile
 
 profile = get_profile(
     st.session_state.user_id
@@ -28,11 +29,13 @@ profile = get_profile(
 
 profile_score = build_profile(profile)
 
+if isinstance(profile_score, dict):
+    profile_score = profile_score["profile_score"]
+
 st.metric(
     "Profile Score",
     profile_score
 )
-
 if profile:
 
     st.write(
@@ -271,7 +274,7 @@ display_df["Status"] = (
 
 st.dataframe(
     display_df,
-    width="stretch"
+    use_container_width=True
 )
 
 # ==================================
@@ -299,8 +302,15 @@ if not urgent.empty:
 ]
 
     st.dataframe(
-            df[display_columns]
-        )
+        urgent[
+            [
+                "Lab",
+                "Deadline",
+                "Days Left"
+            ]
+        ],
+        use_container_width=True
+    )
     st.dataframe(
         urgent[
             [

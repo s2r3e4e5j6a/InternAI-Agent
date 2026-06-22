@@ -1,11 +1,10 @@
-Lab,Location,Deadline,Source,Days Left,Status,Eligibility,cgpa_required,skills_required
-HAL Internship,Bengaluru,2026-07-15,HAL,39,Open,,7.5,Python
-BEL Internship,Hyderabad,2026-07-20,BEL,44,Open,,7.0,"Python,Git"
-RCI Hyderabad Internship,Hyderabad,2026-07-30,DRDO,54,Open,Final Year UG/PG Students,8.0,"Python,Machine Learning"
-SAG Delhi Internship,Delhi,2026-07-28,DRDO,52,Open,Final Year UG/PG Students,8.0,"Python,Machine Learning"
-NPOL Kochi Internship,Kochi,2026-07-25,DRDO,49,Open,Final Year UG/PG Students,7.5,Python
-BARC Training School,Mumbai,2026-06-30,BARC,24,Closing Soon,Final Year UG Students,8.0,"Python,Data Science"
-START 2026,Online,2026-07-20,ISRO,44,Open,PG and Final-Year UG Students,8.5,"Python,Machine Learning"
-CDAC Internship,Pune,2026-07-18,CDAC,42,Open,B.Tech Students,7.0,"Python,Git"
-NIC Data Science Internship,Delhi,2026-07-22,NIC,46,Open,B.Tech Students,8.0,"Python,Data Science"
-AI Research Internship,Hyderabad,2026-07-26,DRDO,50,Open,Final Year UG Students,8.5,"Python,Machine Learning,Deep Learning"
+Lab,Location,Deadline,Source,Days Left,Status,Eligibility,cgpa_required,skills_required,interests,preferred_locationHAL Internship,Bengaluru,2026-07-15,HAL,39,Open,,7.5,Python,"Software,Government",Hyderabad
+BEL Internship,Hyderabad,2026-07-20,BEL,44,Open,,7.0,"Python,Git","Government,Software",Hyderabad
+RCI Hyderabad Internship,Hyderabad,2026-07-30,DRDO,54,Open,Final Year UG/PG Students,8.0,"Python,Machine Learning","AI/ML,Research",Hyderabad
+SAG Delhi Internship,Delhi,2026-07-28,DRDO,52,Open,Final Year UG/PG Students,8.0,"Python,Machine Learning","AI/ML,Research",Delhi
+NPOL Kochi Internship,Kochi,2026-07-25,DRDO,49,Open,Final Year UG/PG Students,7.5,Python,"Government,Research",Kochi
+BARC Training School,Mumbai,2026-06-30,BARC,24,Closing Soon,Final Year UG Students,8.0,"Python,Data Science","Data Science,Research",Mumbai
+START 2026,Online,2026-07-20,ISRO,44,Open,PG and Final-Year UG Students,8.5,"Python,Machine Learning","AI/ML,Research",Online
+CDAC Internship,Pune,2026-07-18,CDAC,42,Open,B.Tech Students,7.0,"Python,Git","Software,Development",Pune
+NIC Data Science Internship,Delhi,2026-07-22,NIC,46,Open,B.Tech Students,8.0,"Python,Data Science","Data Science,Government",Delhi
+AI Research Internship,Hyderabad,2026-07-26,DRDO,50,Open,Final Year UG Students,8.5,"Python,Machine Learning,Deep Learning","AI/ML,Research",Hyderabad

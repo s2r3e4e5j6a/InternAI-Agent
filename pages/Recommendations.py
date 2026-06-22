@@ -70,6 +70,7 @@ st.metric(
 # LOAD INTERNSHIPS
 # ==========================
 
+
 internships = discover_opportunities()
 
 internships["cgpa_required"] = internships[
@@ -79,6 +80,8 @@ internships["cgpa_required"] = internships[
 internships["skills_required"] = internships[
     "skills_required"
 ].fillna("")
+
+
 
 # ==========================
 # ELIGIBILITY ANALYTICS
@@ -130,11 +133,16 @@ for _, internship in internships.iterrows():
 # SORT RECOMMENDATIONS
 # ==========================
 
+best_score = recommendations[0][0]
+
+st.metric(
+    "Best Match",
+    f"{best_score}%"
+)
 recommendations.sort(
     reverse=True,
     key=lambda x: x[0]
 )
-
 if len(recommendations) == 0:
 
     st.warning(
@@ -143,6 +151,12 @@ if len(recommendations) == 0:
 
     st.stop()
 
+best_score = recommendations[0][0]
+
+st.metric(
+    "Best Match",
+    f"{best_score}%"
+)
 # ==========================
 # ANALYTICS DISPLAY
 # ==========================
@@ -195,7 +209,23 @@ for score, internship, reasons in recommendations[:10]:
     st.write(
         f"🎯 Match Score: {score}"
     )
+    if score >= 85:
 
+        st.success(
+            "Highly Recommended"
+        )
+
+    elif score >= 70:
+
+        st.warning(
+            "Recommended"
+        )
+
+    else:
+
+        st.info(
+            "Consider Applying"
+        )
     if reasons:
 
         for reason in reasons:

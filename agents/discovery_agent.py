@@ -23,3 +23,8 @@ def discover_opportunities():
         )
 
         return pd.DataFrame()
+
+
+def load_internships():
+
+    return discover_opportunities()
