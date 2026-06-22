@@ -10,9 +10,17 @@ from agents.career_agent import career_advice
 
 st.title("🎯 AI Internship Recommendations")
 
-if "user_id" not in st.session_state:
+# ==========================
+# LOGIN CHECK
+# ==========================
+
+if not st.session_state.get("logged_in"):
     st.warning("Please Login First")
     st.stop()
+
+# ==========================
+# LOAD PROFILE
+# ==========================
 
 conn = sqlite3.connect("database/users.db")
 
@@ -31,7 +39,11 @@ profile_df = pd.read_sql_query(
 conn.close()
 
 if profile_df.empty:
-    st.warning("Please Complete Your Profile")
+
+    st.warning(
+        "Please Complete Your Profile"
+    )
+
     st.stop()
 
 profile = {
@@ -40,15 +52,66 @@ profile = {
     "interests": profile_df.iloc[0]["interests"]
 }
 
-profile_result = build_profile(profile)
+# ==========================
+# PROFILE SCORE
+# ==========================
+
+profile_score = build_profile(profile)
+
+if isinstance(profile_score, dict):
+    profile_score = profile_score["profile_score"]
+
+st.metric(
+    "Profile Score",
+    profile_score
+)
+
+# ==========================
+# LOAD INTERNSHIPS
+# ==========================
 
 internships = discover_opportunities()
 
+internships["cgpa_required"] = internships[
+    "cgpa_required"
+].fillna(7.0)
+
+internships["skills_required"] = internships[
+    "skills_required"
+].fillna("")
+
+# ==========================
+# ELIGIBILITY ANALYTICS
+# ==========================
+
+eligible = 0
+partial = 0
+not_eligible = 0
+
 recommendations = []
-st.write(df.columns)
+
 for _, internship in internships.iterrows():
 
-    if check_eligibility(profile, internship):
+    result = check_eligibility(
+        profile["cgpa"],
+        profile["skills"],
+        internship["cgpa_required"],
+        internship["skills_required"]
+    )
+
+    if result["status"] == "Eligible":
+
+        eligible += 1
+
+    elif result["status"] == "Partial Match":
+
+        partial += 1
+
+    else:
+
+        not_eligible += 1
+
+    if result["status"] != "Not Eligible":
 
         score, reasons = rank_internship(
             profile,
@@ -58,18 +121,68 @@ for _, internship in internships.iterrows():
         recommendations.append(
             (
                 score,
-                internship
+                internship,
+                reasons
             )
         )
+
+# ==========================
+# SORT RECOMMENDATIONS
+# ==========================
 
 recommendations.sort(
     reverse=True,
     key=lambda x: x[0]
 )
 
-st.subheader("🏆 Top Recommended Internships")
+if len(recommendations) == 0:
 
-for score, internship in recommendations[:5]:
+    st.warning(
+        "No internships match your profile currently."
+    )
+
+    st.stop()
+
+# ==========================
+# ANALYTICS DISPLAY
+# ==========================
+
+st.subheader(
+    "📊 Eligibility Analytics"
+)
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+
+    st.metric(
+        "Eligible",
+        eligible
+    )
+
+with col2:
+
+    st.metric(
+        "Partial Match",
+        partial
+    )
+
+with col3:
+
+    st.metric(
+        "Not Eligible",
+        not_eligible
+    )
+
+# ==========================
+# TOP RECOMMENDATIONS
+# ==========================
+
+st.subheader(
+    "🏆 Top Recommended Internships"
+)
+
+for score, internship, reasons in recommendations[:10]:
 
     st.write(
         f"### {internship['Lab']}"
@@ -80,19 +193,37 @@ for score, internship in recommendations[:5]:
     )
 
     st.write(
-        f"🎯 Match Score: {score:.1f}"
+        f"🎯 Match Score: {score}"
     )
-    for reason in reasons:
-        st.write(f"✓ {reason}")
 
-    st.write("---")
+    if reasons:
 
-st.subheader("💡 Career Advice")
+        for reason in reasons:
 
-st.success(
-    career_advice(profile)
+            st.write(
+                f"✓ {reason}"
+            )
+
+    st.divider()
+
+# ==========================
+# CAREER COACH
+# ==========================
+
+st.subheader(
+    "💡 Personalized Career Advice"
 )
+
+advice = career_advice(
+    profile
+)
+
+for item in advice:
+
+    st.success(item)
+
 if profile["cgpa"] >= 8.5:
+
     st.success(
-        "Eligible for DRDO/ISRO Research Internships"
+        "Eligible for DRDO / ISRO / BARC Research Internships"
     )

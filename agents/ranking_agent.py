@@ -6,47 +6,91 @@ def rank_internship(
     score = 0
     reasons = []
 
-    skills = profile["skills"].lower()
-
-    eligibility = str(
-        internship["Eligibility"]
+    skills = str(
+        profile["skills"]
     ).lower()
 
     interests = str(
         profile["interests"]
     ).lower()
 
-    # Python Match
-    if "python" in skills:
-        score += 20
-        reasons.append("Python Skill")
+    required_skills = str(
+        internship["skills_required"]
+    ).lower()
 
-    # Machine Learning Match
-    if (
-        "machine learning" in skills
-        or "ai" in skills
-    ):
+    source = str(
+        internship["Source"]
+    ).lower()
+
+    # ===================
+    # CGPA
+    # ===================
+
+    if profile["cgpa"] >= internship["cgpa_required"]:
+
         score += 25
-        reasons.append("AI/ML Skills")
+        reasons.append(
+            "CGPA Match"
+        )
 
-    # CGPA Match
-    if profile["cgpa"] >= 8.5:
+    # ===================
+    # Skills
+    # ===================
+
+    matched = 0
+
+    for skill in required_skills.split(","):
+
+        skill = skill.strip()
+
+        if skill and skill in skills:
+
+            matched += 1
+
+    score += min(
+        matched * 20,
+        40
+    )
+
+    if matched > 0:
+
+        reasons.append(
+            f"{matched} Skill Match"
+        )
+
+    # ===================
+    # Interests
+    # ===================
+
+    if (
+        "ai/ml" in interests
+        and
+        "machine learning"
+        in required_skills
+    ):
+
         score += 20
-        reasons.append("CGPA > 8.5")
 
-    # Government Interest
-    if "government" in interests:
+        reasons.append(
+            "AI Interest Match"
+        )
+
+    # ===================
+    # Govt Organizations
+    # ===================
+
+    if source in [
+        "drdo",
+        "isro",
+        "barc",
+        "hal",
+        "bel"
+    ]:
+
         score += 15
-        reasons.append("Government Internship Interest")
 
-    # Research Interest
-    if "research" in interests:
-        score += 10
-        reasons.append("Research Interest")
-
-    # Eligibility Match
-    if "python" in eligibility and "python" in skills:
-        score += 10
-        reasons.append("Eligibility Match")
+        reasons.append(
+            "Government Opportunity"
+        )
 
     return score, reasons

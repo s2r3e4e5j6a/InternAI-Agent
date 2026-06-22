@@ -12,30 +12,30 @@ cgpa = st.session_state.get(
     0
 )
 
-drdo_score = 0
+score = 0
 
 if "python" in skills:
-    drdo_score += 25
+    score += 25
 
 if "machine learning" in skills:
-    drdo_score += 25
+    score += 25
 
 if cgpa >= 8.5:
-    drdo_score += 50
+    score += 50
 
 st.metric(
-    "DRDO Readiness",
-    f"{drdo_score}%"
+    "Career Readiness",
+    f"{score}%"
 )
 
-if drdo_score < 100:
+if score >= 80:
 
-    st.warning(
-        "Learn Research Methodology and Publications"
+    st.success(
+        "Excellent profile for AI and Research internships"
     )
 
 else:
 
-    st.success(
-        "Excellent DRDO Profile"
+    st.warning(
+        "Improve skills and projects"
     )

@@ -60,29 +60,69 @@ def save_profile(
 
     cursor.execute(
         """
-        INSERT INTO profiles(
-            user_id,
-            name,
-            degree,
-            branch,
-            year,
-            cgpa,
-            skills,
-            interests
-        )
-        VALUES(?,?,?,?,?,?,?,?)
+        SELECT *
+        FROM profiles
+        WHERE user_id=?
         """,
-        (
-            user_id,
-            name,
-            degree,
-            branch,
-            year,
-            cgpa,
-            skills,
-            interests
-        )
+        (user_id,)
     )
+
+    existing = cursor.fetchone()
+
+    if existing:
+
+        cursor.execute(
+            """
+            UPDATE profiles
+            SET
+                name=?,
+                degree=?,
+                branch=?,
+                year=?,
+                cgpa=?,
+                skills=?,
+                interests=?
+            WHERE user_id=?
+            """,
+            (
+                name,
+                degree,
+                branch,
+                year,
+                cgpa,
+                skills,
+                interests,
+                user_id
+            )
+        )
+
+    else:
+
+        cursor.execute(
+            """
+            INSERT INTO profiles(
+                user_id,
+                name,
+                degree,
+                branch,
+                year,
+                cgpa,
+                skills,
+                interests
+            )
+            VALUES(?,?,?,?,?,?,?,?)
+            """,
+            (
+                user_id,
+                name,
+                degree,
+                branch,
+                year,
+                cgpa,
+                skills,
+                interests
+            )
+        )
 
     conn.commit()
     conn.close()

@@ -1,19 +1,11 @@
-    Lab,Location,Deadline,Source,Days Left,Status,Eligibility
-    HAL Internship,Bengaluru,2026-07-15,HAL,39.0,Open,
-    BEL Internship,Hyderabad,2026-07-20,BEL,44.0,Open,
-    Rci Hyderabad  Paid Internship Engineering Science Ug Pg,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    Sag Delhi  Paid Internship Engineering Science Ug Pg,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    Npol Kochi  Paid Internship Scheme Drdo,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    Rac  Scientist Posts Drds Cadre Drdo,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    Inmas Delhi  Award Drdo Research Associate And Junior Research,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    Cair Bengaluru Invites Walk Interview Post Junior Research Fellowship 04Th July,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    Itr Chandipur  Paid Internship Scheme 2026 27 Pursuing,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    Dlj Jodhpur  Paid Internship Scheme 2026 27 Pursuing,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    Dibt Mysuru  Paid Internship Scheme 2026 27 Msc Pursuing Pg,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    Dmsrde Kanpur  Paid Internship Scheme 2026 27 Pursuing,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    Dihar Leh Ladakh  Paid Internship Scheme 2026 27 Bebtech,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    Deal Dehradun  Paid Internship Scheme 2026 27 Bebtech,India,Unknown,DRDO,-1.0,Open,Final Year UG/PG Students
-    START 2026,Online,deadline,ISRO,-1.0,Open,PG and Final-Year UG Students
-    BARC Training School,Mumbai,2026-06-18,BARC,12.0,Closing Soon,
-    START 2026,Online,2026-02-13,ISRO,-113.0,Expired,PG and Final-Year UG Students
-    ade,,2026-06-05,Manual Entry,,Expired,
+Lab,Location,Deadline,Source,Days Left,Status,Eligibility,cgpa_required,skills_required
+HAL Internship,Bengaluru,2026-07-15,HAL,39,Open,,7.5,Python
+BEL Internship,Hyderabad,2026-07-20,BEL,44,Open,,7.0,"Python,Git"
+RCI Hyderabad Internship,Hyderabad,2026-07-30,DRDO,54,Open,Final Year UG/PG Students,8.0,"Python,Machine Learning"
+SAG Delhi Internship,Delhi,2026-07-28,DRDO,52,Open,Final Year UG/PG Students,8.0,"Python,Machine Learning"
+NPOL Kochi Internship,Kochi,2026-07-25,DRDO,49,Open,Final Year UG/PG Students,7.5,Python
+BARC Training School,Mumbai,2026-06-30,BARC,24,Closing Soon,Final Year UG Students,8.0,"Python,Data Science"
+START 2026,Online,2026-07-20,ISRO,44,Open,PG and Final-Year UG Students,8.5,"Python,Machine Learning"
+CDAC Internship,Pune,2026-07-18,CDAC,42,Open,B.Tech Students,7.0,"Python,Git"
+NIC Data Science Internship,Delhi,2026-07-22,NIC,46,Open,B.Tech Students,8.0,"Python,Data Science"
+AI Research Internship,Hyderabad,2026-07-26,DRDO,50,Open,Final Year UG Students,8.5,"Python,Machine Learning,Deep Learning"

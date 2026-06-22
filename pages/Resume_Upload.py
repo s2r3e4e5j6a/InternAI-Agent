@@ -15,11 +15,22 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file:
 
-    with open("uploaded_resume.pdf", "wb") as f:
-        f.write(uploaded_file.read())
+    # Save PDF
+    with open(
+        "uploaded_resume.pdf",
+        "wb"
+    ) as f:
 
-    text = extract_text("uploaded_resume.pdf")
+        f.write(
+            uploaded_file.read()
+        )
 
+    # Extract text
+    text = extract_text(
+        "uploaded_resume.pdf"
+    )
+
+    # Extract profile details
     profile = extract_profile(text)
 
     st.session_state["name"] = profile["name"]
@@ -27,19 +38,43 @@ if uploaded_file:
     st.session_state["branch"] = profile["branch"]
     st.session_state["cgpa"] = profile["cgpa"]
 
-    skills = extract_skills(text)
+    # Show extracted profile
+    st.subheader("👤 Detected Profile")
 
-    st.subheader("🎯 Extracted Skills")
+    st.write(
+        f"**Name:** {profile['name']}"
+    )
+
+    st.write(
+        f"**Degree:** {profile['degree']}"
+    )
+
+    st.write(
+        f"**Branch:** {profile['branch']}"
+    )
+
+    st.write(
+        f"**CGPA:** {profile['cgpa']}"
+    )
+
+    # Extract skills
+    skills = extract_skills(text)
 
     skills_text = ", ".join(skills)
 
-    st.success("Skills extracted successfully!")
-
     st.session_state["skills"] = skills_text
+
+    st.subheader("🎯 Extracted Skills")
+
+    st.success(
+        "Resume Parsed Successfully"
+    )
 
     st.write(skills_text)
 
-    st.subheader("📄 Extracted Resume Text")
+    st.subheader(
+        "📄 Extracted Resume Text"
+    )
 
     st.text_area(
         "Resume Content",

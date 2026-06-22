@@ -1,11 +1,11 @@
 import streamlit as st
+
 from utils.auth import save_profile
 from utils.profile_score import build_profile
 
 st.title("👤 Student Profile")
 
-
-if "logged_in" not in st.session_state:
+if not st.session_state.get("logged_in"):
     st.warning("Please Login First")
     st.stop()
 
@@ -32,9 +32,15 @@ branch = st.text_input(
         ""
     )
 )
+
 year = st.selectbox(
     "Year",
-    ["1st", "2nd", "3rd", "4th"]
+    [
+        "1st",
+        "2nd",
+        "3rd",
+        "4th"
+    ]
 )
 
 cgpa = st.number_input(
@@ -50,10 +56,12 @@ cgpa = st.number_input(
     step=0.01
 )
 
-# Auto-load skills from Resume Upload page
 skills = st.text_area(
     "Skills",
-    value=st.session_state.get("skills", "")
+    value=st.session_state.get(
+        "skills",
+        ""
+    )
 )
 
 interests = st.multiselect(
@@ -67,6 +75,7 @@ interests = st.multiselect(
         "Data Science"
     ]
 )
+
 profile = {
     "skills": str(skills),
     "cgpa": float(cgpa)
@@ -82,6 +91,7 @@ st.metric(
     "Profile Score",
     f"{score}/100"
 )
+
 if st.button("Save Profile"):
 
     save_profile(
@@ -95,8 +105,13 @@ if st.button("Save Profile"):
         ",".join(interests)
     )
 
+    st.session_state["name"] = name
+    st.session_state["degree"] = degree
+    st.session_state["branch"] = branch
+    st.session_state["cgpa"] = cgpa
+    st.session_state["skills"] = skills
     st.session_state["interests"] = ",".join(interests)
-
+    st.session_state["profile_score"] = score
 
     st.success(
         "✅ Profile Saved Successfully"

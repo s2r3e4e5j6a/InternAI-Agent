@@ -26,7 +26,6 @@ profile = get_profile(
     st.session_state.user_id
 )
 
-st.write(profile)
 profile_score = build_profile(profile)
 
 st.metric(

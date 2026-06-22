@@ -1,42 +1,48 @@
 import streamlit as st
 import pandas as pd
-
+from utils.profile_db import get_profile
 from utils.matcher import rank_internship
 from utils.eligibility_agent import check_eligibility
 
 st.title("🎯 AI Internship Recommendations")
+db_profile = get_profile(
+    st.session_state.user_id
+)
 
-# User Profile
 profile = {
-    "skills": st.session_state.get(
-        "skills",
-        ""
-    ),
-    "cgpa": st.session_state.get(
-        "cgpa",
-        0
-    ),
-    "interests": st.session_state.get(
-        "interests",
-        ""
-    )
+    "skills": db_profile[7],
+    "cgpa": db_profile[6],
+    "interests": db_profile[8]
 }
+st.write(profile)
 
-# Load internships
 df = pd.read_csv(
     "data/internships.csv"
 )
 
-scores = []
+df["cgpa_required"] = df[
+    "cgpa_required"
+].fillna(7.0)
+
+df["skills_required"] = df[
+    "skills_required"
+].fillna("")
+
+results = []
 
 for _, row in df.iterrows():
+    result = check_eligibility(
+        profile["cgpa"],
+        profile["skills"],
+        row["cgpa_required"],
+        row["skills_required"]
+    )
 
-    if check_eligibility(
-        profile,
-        row
-    ):
+    status = result["status"]
 
-        score = rank_internship(
+    if status != "Not Eligible":
+
+        score, reasons = rank_internship(
             profile,
             row
         )
@@ -44,19 +50,27 @@ for _, row in df.iterrows():
     else:
 
         score = 0
+        reasons = []
 
-    scores.append(score)
+    results.append(
+        (
+            score,
+            status,
+            reasons,
+            row
+        )
+    )
 
-df["Match Score"] = scores
-
-df = df.sort_values(
-    "Match Score",
-    ascending=False
+results.sort(
+    reverse=True,
+    key=lambda x: x[0]
 )
 
-st.subheader("🏆 Top Recommended Internships")
+st.subheader(
+    "🏆 Top Recommended Internships"
+)
 
-for _, row in df.iterrows():
+for score, status, reasons, row in results[:10]:
 
     st.markdown(
         f"### {row['Lab']}"
@@ -66,13 +80,43 @@ for _, row in df.iterrows():
         f"📍 {row['Location']}"
     )
 
+    if status == "Eligible":
+
+        st.success(
+            "✅ Eligible"
+        )
+
+    elif status == "Partial Match":
+
+        st.warning(
+            "🟡 Partial Match"
+        )
+
+    else:
+
+        st.error(
+            "❌ Not Eligible"
+        )
+
     st.metric(
         "Match Score",
-        f"{row['Match Score']}"
+        score
     )
 
     st.write(
         f"Eligibility: {row['Eligibility']}"
     )
+
+    if reasons:
+
+        st.write(
+            "**Why Recommended:**"
+        )
+
+        for reason in reasons:
+
+            st.write(
+                f"✓ {reason}"
+            )
 
     st.divider()
