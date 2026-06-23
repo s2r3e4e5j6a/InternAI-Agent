@@ -2,11 +2,11 @@
 
 ## AI-Powered Internship Discovery & Career Preparation Platform
 
-InternAI Agent is a multi-agent AI platform that helps students discover internships, evaluate eligibility, identify skill gaps, receive AI-powered career guidance, and prepare for interviews.
+InternAI Agent is a Multi-Agent AI system that helps students discover internships, analyze eligibility, identify skill gaps, and prepare for their careers using AI-powered recommendations.
 
 ---
 
-## Problem Statement
+## 📌 Problem Statement
 
 Students often struggle to:
 
@@ -16,77 +16,188 @@ Students often struggle to:
 * Prepare for interviews
 * Receive personalized career guidance
 
----
-
-## Solution
-
-InternAI Agent uses multiple AI-inspired agents to analyze student profiles and recommend opportunities.
+InternAI Agent solves these challenges through a Multi-Agent Architecture.
 
 ---
 
-## Features
+## 🤖 Multi-Agent Architecture
 
-### 👤 Profile Agent
+User
+↓
+Profile Agent
+↓
+Discovery Agent
+↓
+Eligibility Agent
+↓
+Ranking Agent
+↓
+Recommendations
+↓
+Skill Gap Agent
+↓
+Career Coach Agent
 
-* Builds user profile
-* Calculates profile strength score
+### Agents
 
-### 📄 Resume Parser
+#### 👤 Profile Agent
 
-* Extracts skills from uploaded resumes
-* Auto-fills profile information
+Analyzes CGPA, skills, and interests to generate a profile score.
 
-### 🎯 Eligibility Agent
+#### 🔍 Discovery Agent
 
-* Determines internship eligibility
+Loads and manages internship opportunities.
 
-### 📊 Ranking Agent
+#### ✅ Eligibility Agent
 
-* Calculates internship match scores
+Checks internship eligibility based on profile data.
 
-### 📈 Skill Gap Agent
+#### 🏆 Ranking Agent
 
-* Identifies missing skills
-* Suggests learning roadmap
+Ranks opportunities using:
 
-### 🤖 AI Career Coach
+* Skills Match (40%)
+* CGPA Match (25%)
+* Interest Match (20%)
+* Location Match (15%)
 
-* Personalized career guidance using OpenRouter AI
+#### 📈 Skill Gap Agent
 
-### 🎤 Interview Preparation
+Identifies missing skills and readiness score.
 
-* Generates interview questions
+#### 🤖 Career Coach Agent
+
+Provides personalized AI-powered career guidance.
 
 ---
 
-## Tech Stack
+## ✨ Features
+
+* User Authentication
+* Resume Upload
+* Resume Analysis
+* Profile Builder
+* Internship Discovery
+* Eligibility Checking
+* Internship Recommendations
+* Skill Gap Analysis
+* AI Career Coach
+* Interview Preparation
+* Saved Internships
+* Dashboard Analytics
+* PDF Reports
+
+---
+
+## 🔒 Security
+
+* SHA-256 Password Hashing
+* SQLite Database Storage
+* Session-Based Authentication
+
+Passwords are never stored in plain text.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* Streamlit
+
+### Backend
 
 * Python
-* Streamlit
+
+### Database
+
 * SQLite
+
+### Data Processing
+
 * Pandas
-* OpenRouter API
 * PDFPlumber
 
----
+### AI
 
-## Agent Architecture
-
-Resume Upload → Resume Parser → Profile Agent → Eligibility Agent → Ranking Agent → Skill Gap Agent → AI Career Coach
+* OpenRouter API
 
 ---
 
-## Future Scope
+## 📊 Course Concepts Demonstrated
 
-* Live internship scraping
-* Email notifications
-* Advanced AI interview simulation
-* Real-time internship monitoring
+### Multi-Agent System
+
+* Profile Agent
+* Discovery Agent
+* Eligibility Agent
+* Ranking Agent
+* Skill Gap Agent
+* Career Coach Agent
+
+### Agent Skills
+
+* Resume Analysis Skill
+* Recommendation Skill
+* Eligibility Skill
+* Interview Skill
+* Career Coaching Skill
+
+### Human-in-the-Loop
+
+Users can:
+
+* Review recommendations
+* Save internships
+* Select career paths
+* Analyze skill gaps
+
+### Security
+
+* Password hashing
+* Secure authentication
 
 ---
 
-## Author
+## 🚀 Installation
+
+```bash
+git clone <repository-url>
+
+cd InternAI-Agent
+
+pip install -r requirements.txt
+
+streamlit run app.py
+```
+
+---
+
+## 📸 Screenshots
+
+* Dashboard
+* Profile Builder
+* Resume Upload
+* Recommendations
+* Skill Gap Analysis
+* AI Career Coach
+
+---
+
+## 🔮 Future Scope
+
+* Live Internship Scraping
+* Email Notifications
+* AI Interview Simulator
+* Internship Application Tracking
+* Advanced Analytics
+
+---
+
+## 👩‍💻 Developed By
 
 Sreeja Gurrala
+
 B.Tech CSE (AI & ML)
+
 J.B. Institute of Engineering & Technology
