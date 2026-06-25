@@ -1,85 +1,93 @@
 # 🚀 InternAI Agent
 
-## AI-Powered Multi-Agent Internship Recommendation System
+## AI-Powered Multi-Agent Internship Discovery & Career Preparation Platform
 
-InternAI Agent is an intelligent multi-agent system that helps students discover internship opportunities, evaluate eligibility, identify skill gaps, and receive personalized career guidance.
+InternAI Agent is an intelligent multi-agent system that helps students discover internship opportunities, evaluate eligibility, identify skill gaps, prepare for interviews, and receive personalized AI career guidance.
 
-The project was developed to solve a common problem faced by students:
-
-* Internship opportunities are scattered across multiple platforms.
-* Eligibility requirements are often unclear.
-* Students do not know which skills they are missing.
-* Career guidance is usually generic and not personalized.
-
-InternAI Agent addresses these challenges using a Multi-Agent AI architecture that analyzes student profiles and provides tailored internship recommendations.
+The platform combines AI Agents, Semantic Matching, Resume Analysis, Skill Gap Detection, and Career Coaching to provide students with personalized internship recommendations and career development support.
 
 ---
 
 # 🎯 Problem Statement
 
-Students often miss valuable internship opportunities because:
+Students face several challenges while searching for internships:
 
-* Opportunities are distributed across different websites.
+* Opportunities are spread across multiple platforms.
 * Eligibility requirements are difficult to understand.
-* Skill gaps are not clearly identified.
-* Career guidance lacks personalization.
+* Skill gaps are often unclear.
+* Career guidance is generic and not personalized.
+* Students struggle to identify the best opportunities for their profile.
 
-InternAI Agent uses AI Agents to automate opportunity discovery, eligibility analysis, ranking, and career coaching.
+InternAI Agent addresses these challenges using an AI-powered Multi-Agent Architecture.
 
 ---
 
-# 🏗️ System Architecture
+# 🏗️ Multi-Agent Architecture
 
-## Multi-Agent Workflow
-
-```text
 👤 User
-    │
-    ▼
+
+⬇
+
 📄 Resume Upload
-    │
-    ▼
+
+⬇
+
 👤 Profile Agent
-    │
-    ▼
+
+⬇
+
 🔍 Discovery Agent
-    │
-    ▼
+
+⬇
+
 ✅ Eligibility Agent
-    │
-    ▼
+
+⬇
+
 🏆 Ranking Agent
-    │
-    ▼
-🎯 Recommendations
-    │
-    ▼
+
+⬇
+
+🧠 Semantic Matching Agent
+
+⬇
+
+🎯 Internship Recommendations
+
+⬇
+
 📈 Skill Gap Agent
-    │
-    ▼
+
+⬇
+
 🤖 Career Coach Agent
-    │
-    ▼
+
+⬇
+
+🎤 Interview Evaluator Agent
+
+⬇
+
 💾 Saved Internships
-```
 
 ---
 
-# 🧠 Agents in the System
+# 🤖 AI Agents
 
 ## 👤 Profile Agent
 
 Responsibilities:
 
-* Extracts information from uploaded resumes
-* Builds student profiles
-* Calculates profile score
-* Identifies skills, CGPA, and interests
+* Resume Parsing
+* Skill Extraction
+* CGPA Analysis
+* Profile Score Generation
 
-Output:
+Outputs:
 
 * Profile Score
-* Skills List
+* Skills
+* Interests
 * Student Profile
 
 ---
@@ -88,13 +96,15 @@ Output:
 
 Responsibilities:
 
-* Loads internship datasets
-* Discovers internship opportunities
-* Filters opportunities based on user interests
+* Discover internship opportunities
+* Aggregate opportunities from multiple sources
+* AICTE Opportunity Discovery
+* Internship Dataset Management
 
-Output:
+Outputs:
 
-* Relevant internship opportunities
+* Internship Opportunities
+* Discovery Statistics
 
 ---
 
@@ -102,14 +112,15 @@ Output:
 
 Responsibilities:
 
-* Compares user profile with internship requirements
-* Checks CGPA eligibility
-* Evaluates required skills
+* Eligibility Verification
+* CGPA Matching
+* Skill Matching
 
-Output:
+Outputs:
 
-* Eligible internships
-* Eligibility status
+* Eligible Opportunities
+* Partial Matches
+* Non-Eligible Opportunities
 
 ---
 
@@ -117,13 +128,29 @@ Output:
 
 Responsibilities:
 
-* Calculates internship match scores
-* Ranks opportunities
-* Prioritizes best-fit internships
+* Internship Scoring
+* Recommendation Ranking
+* Best Match Identification
 
-Output:
+Outputs:
 
-* Top internship recommendations
+* Match Score
+* Ranked Recommendations
+
+---
+
+## 🧠 Semantic Matching Agent
+
+Responsibilities:
+
+* Sentence Transformer Embeddings
+* Semantic Similarity Analysis
+* AI-Powered Profile Matching
+
+Outputs:
+
+* Semantic Match Score
+* AI Similarity Percentage
 
 ---
 
@@ -131,14 +158,15 @@ Output:
 
 Responsibilities:
 
-* Identifies missing skills
-* Calculates readiness score
-* Suggests learning pathways
+* Missing Skill Detection
+* Readiness Score Calculation
+* Learning Resource Recommendation
 
-Output:
+Outputs:
 
-* Skill Gap Analysis
+* Missing Skills
 * Readiness Score
+* Learning Recommendations
 
 ---
 
@@ -146,234 +174,185 @@ Output:
 
 Responsibilities:
 
-* Provides AI-powered career guidance
-* Answers career-related questions
-* Suggests career paths and preparation strategies
+* Personalized Career Guidance
+* Career Roadmap Generation
+* Internship Strategy Planning
 
-Output:
+Outputs:
 
-* Personalized career recommendations
-
----
-
-# 🎯 Agent Skills
-
-The system implements multiple AI skills:
-
-### 📄 Resume Analysis Skill
-
-* Resume parsing
-* Skill extraction
-* Profile generation
-
-### 🎯 Eligibility Analysis Skill
-
-* Requirement matching
-* Eligibility verification
-
-### 🏆 Recommendation Skill
-
-* Internship ranking
-* Match score calculation
-
-### 📈 Skill Gap Analysis Skill
-
-* Missing skill detection
-* Readiness evaluation
-
-### 🎤 Interview Preparation Skill
-
-* Interview guidance
-* Preparation suggestions
-
-### 🤖 AI Career Coaching Skill
-
-* Personalized career advice
-* Career roadmap generation
+* Career Advice
+* Learning Recommendations
+* Internship Preparation Guidance
 
 ---
 
-# 👨‍💻 Human-in-the-Loop Design
+## 🎤 Interview Evaluator Agent
 
-InternAI Agent follows a Human-in-the-Loop (HITL) approach.
+Responsibilities:
 
-AI assists students by:
+* Interview Question Generation
+* Answer Evaluation
+* Improvement Suggestions
 
-* Recommending internships
-* Identifying skill gaps
-* Generating career insights
+Outputs:
 
-The final decision always remains with the student.
-
-Students can:
-
-* Review recommendations
-* Analyze opportunities
-* Save internships
-* Decide their own career path
-
-This ensures transparency and responsible AI usage.
+* Interview Feedback
+* Performance Insights
 
 ---
 
-# 🔒 Security
+# 🧠 AI Skills
 
-Security is built into the system.
+### 📄 Resume Analysis
 
-### Authentication
+* Resume Parsing
+* Skill Extraction
+* Profile Creation
 
-* User Registration
-* User Login
+### 🎯 Eligibility Analysis
 
-### Password Protection
+* Requirement Matching
+* Qualification Verification
 
-* Passwords are hashed using SHA-256
-* Credentials are never stored in plain text
+### 🏆 Recommendation Engine
 
-### Data Privacy
+* Internship Ranking
+* Match Score Generation
 
-* User profiles are securely stored
-* Personal data remains protected
+### 🧠 Semantic Matching
+
+* Sentence Transformers
+* Embedding Similarity Analysis
+
+### 📈 Skill Gap Analysis
+
+* Missing Skill Detection
+* Learning Recommendations
+
+### 🤖 Career Coaching
+
+* Personalized Career Advice
+* AI Roadmap Generation
+
+### 🎤 Interview Evaluation
+
+* Answer Assessment
+* Interview Feedback
+
+---
+
+# 🔒 Security Features
+
+* SHA-256 Password Hashing
+* Session-Based Authentication
+* SQLite User Management
+* Protected User Pages
+* Secure User Profiles
 
 ---
 
 # ⚙️ Tech Stack
 
-### Frontend
+Frontend
 
 * Streamlit
 
-### Backend
+Backend
 
 * Python
 
-### Database
+Database
 
 * SQLite
 
-### Data Processing
+AI & Machine Learning
+
+* OpenRouter AI
+* Sentence Transformers
+
+Data Processing
 
 * Pandas
 
-### Resume Parsing
+Resume Parsing
 
 * PDFPlumber
 
-### AI Integration
+Web Scraping
 
-* OpenRouter AI
+* BeautifulSoup
 
----
+Libraries
 
-# 📂 Project Structure
-
-```text
-InternAI-Agent/
-│
-├── app.py
-│
-├── agents/
-│   ├── profile_agent.py
-│   ├── discovery_agent.py
-│   ├── eligibility_agent.py
-│   ├── ranking_agent.py
-│   └── career_agent.py
-│
-├── pages/
-│   ├── Login.py
-│   ├── Register.py
-│   ├── Dashboard.py
-│   ├── Profile.py
-│   ├── Resume_Upload.py
-│   ├── Recommendations.py
-│   └── Career_Coach.py
-│
-├── utils/
-│   ├── auth.py
-│   ├── resume_parser.py
-│   └── notifications.py
-│
-├── database/
-│   ├── users.db
-│   └── init_db.py
-│
-├── data/
-│   └── internships.csv
-│
-├── requirements.txt
-│
-└── README.md
-```
+* NumPy
+* Requests
 
 ---
 
 # 🚀 Features
 
-### Current Features
+## Current Features
 
 ✅ User Authentication
 
-✅ Resume Upload
-
-✅ AI Resume Parsing
+✅ Resume Upload & Parsing
 
 ✅ Profile Builder
+
+✅ Profile Score Calculation
 
 ✅ Internship Discovery
 
 ✅ Eligibility Analysis
 
-✅ Internship Ranking
+✅ AI Recommendation Engine
 
-✅ Personalized Recommendations
+✅ Semantic Matching
 
 ✅ Skill Gap Analysis
 
-✅ Career Coaching
+✅ Learning Resource Recommendations
+
+✅ AI Career Coach
+
+✅ Interview Preparation
 
 ✅ Saved Internships
+
+✅ Discovery Agent
+
+✅ Dashboard Analytics
+
+---
+
+# 📊 Dashboard Highlights
+
+* Profile Score
+* Internship Opportunity Count
+* Saved Internships
+* Open Opportunities
+* Closing Soon Opportunities
+* Best Match Identification
+* AI Insights
 
 ---
 
 # 🔮 Future Scope
 
-### Live Internship Discovery
-
-Automatically collect opportunities from internship portals.
-
-### Automated Notifications
-
-Send alerts for new matching internships.
-
-### Application Tracking
-
-Track application status and deadlines.
-
-### AI Interview Simulator
-
-Conduct mock interviews and provide feedback.
-
-### Real-Time Opportunity Monitoring
-
-Monitor internship platforms continuously for new opportunities.
-
----
-
-# 🏆 Impact
-
-InternAI Agent helps students:
-
-* Discover relevant internships faster
-* Understand eligibility requirements
-* Improve missing skills
-* Make informed career decisions
-* Increase internship application success rates
+* Real-Time Internship Monitoring
+* DRDO Live Scraper
+* AICTE Live Discovery
+* Unstop Integration
+* Email Notifications
+* Application Tracking
+* AI Mock Interviews
+* Internship Deadline Alerts
 
 ---
 
 # 👩‍💻 Developed By
 
-**Sreeja Gurrala**
+Sreeja Gurrala
 
 B.Tech – Computer Science & Engineering (AI & ML)
 
@@ -385,4 +364,4 @@ Hyderabad, Telangana, India
 
 # ⭐ InternAI Agent
 
-"Helping students discover opportunities, bridge skill gaps, and build successful careers through AI Agents."
+Helping students discover opportunities, bridge skill gaps, and build successful careers through AI Agents.
